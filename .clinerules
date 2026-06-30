@@ -1,0 +1,53 @@
+# Regras do Projeto DASHBOARD_DEMONSTRATION
+
+## Estrutura do Projeto
+
+- `pages/` → Interface Streamlit (cada arquivo é uma página)
+- `relatorios/` → Lógica de negócio (métricas, PDF, gráficos, dados, email)
+- `utils/` → Utilitários (formatação, ETL, logs)
+- `auth.py` → Autenticação, perfis, permissões e filtros de usuário
+
+## Padrões de Código
+
+- Sempre usar encoding UTF-8 em todos os arquivos
+- Usar f-strings para formatação de strings
+- Usar DuckDB para consultas SQL complexas em vez de pandas puro
+- Manter compatibilidade com dados antigos (ex: tratar `codfornec` como int ou str)
+
+## Formatação de Valores
+
+- Usar `formatar_moeda()` do `utils/formatador.py` para exibir valores monetários
+- Usar `formatar_numero()` para números inteiros
+- Usar `formatar_percentual()` para percentuais
+- Usar `formatar_moeda_abreviada()` para valores grandes (milhões/milhares)
+
+## Segurança por Perfil
+
+- Sempre passar `filtros_usuario` para funções que acessam dados
+- Usar `get_filtros_usuario()` do `auth.py` para obter filtros do usuário logado
+- Perfis: `admin`, `supervisor`, `vendedor`, `fornecedor`
+- Perfil `fornecedor`: filtrar por `codfornec` (código do fornecedor)
+- Perfil `vendedor`: filtrar por `codvendedor`
+- Perfil `supervisor`: filtrar por vendedores supervisionados
+- Fallback de segurança: se filtro estiver vazio para perfil restrito, aplicar automaticamente os valores permitidos
+
+## Convenções
+
+- Nomes de arquivos em português (ex: `Usuário.py`, `Configuração.py`)
+- Comentários e documentação em português
+- Manter separação clara entre interface (pages/) e lógica (relatorios/)
+- Usar `prepare_for_duckdb()` do `utils/etl.py` antes de registrar DataFrames no DuckDB
+
+## Fonte de Dados
+
+- **Modo Demonstração**: Todos os dados são lidos localmente das pastas `data/` e `processados/`
+- **CSV** (`data/`): Arquivos CSV brutos com dados sintéticos de demonstração
+- **Parquet** (`processados/`): Arquivos processados gerados pelo ETL a partir dos CSVs
+- **JSON** (`data/`): Arquivo `usuarios.json` com dados de autenticação
+- Não há mais dependência de Cloudflare R2 ou qualquer serviço externo
+- O projeto funciona 100% offline com dados de demonstração
+
+## Credenciais de Demonstração
+
+- Usuário: `admin` | Senha: `admin`
+- Usuário: `demo` | Senha: `demo`

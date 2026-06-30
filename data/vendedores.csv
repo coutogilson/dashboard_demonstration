@@ -1,0 +1,21 @@
+codvendedor;vendedor;tipo;codsupervisor;email
+1;Ana Beatriz Costa;S;;vendedor1@exemplo.com
+2;Carlos Eduardo Silva;S;;vendedor2@exemplo.com
+3;Daniela Oliveira Santos;S;;vendedor3@exemplo.com
+4;Eduardo Almeida Neto;S;;vendedor4@exemplo.com
+5;Fernanda Lima Souza;V;1.0;vendedor5@exemplo.com
+6;Gabriel Barbosa Rocha;V;1.0;vendedor6@exemplo.com
+7;Helena Martins Dias;V;3.0;vendedor7@exemplo.com
+8;Igor Pereira Gomes;V;2.0;vendedor8@exemplo.com
+9;Julia Carvalho Ribeiro;V;2.0;vendedor9@exemplo.com
+10;Lucas Fernandes Teixeira;V;2.0;vendedor10@exemplo.com
+11;Mariana Campos Araujo;V;1.0;vendedor11@exemplo.com
+12;Nicolas Moreira Lopes;V;1.0;vendedor12@exemplo.com
+13;Patricia Azevedo Castro;V;4.0;vendedor13@exemplo.com
+14;Rafael Monteiro Cardoso;V;1.0;vendedor14@exemplo.com
+15;Sandra Vieira Nunes;V;1.0;vendedor15@exemplo.com
+16;Thiago Correia Pinto;V;1.0;vendedor16@exemplo.com
+17;Vanessa Barbosa Melo;V;2.0;vendedor17@exemplo.com
+18;William Santos Cruz;V;2.0;vendedor18@exemplo.com
+19;Yara Oliveira Campos;V;1.0;vendedor19@exemplo.com
+20;Bruno Costa Andrade;V;2.0;vendedor20@exemplo.com

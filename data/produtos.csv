@@ -1,0 +1,31 @@
+codproduto;produto;marca;pesoliq;pesobruto;codfornec;qtde_conv;un
+1001;Pão de Forma Integral;PANE;0.45;0.495;1;12;UN
+1002;Pão de Leite;PULLMAN;0.4;0.44;1;10;UN
+1003;Bolo de Chocolate;PANE;0.35;0.385;1;8;UN
+1004;Torrada Integral;VITARELLA;0.2;0.22;1;24;UN
+1005;Biscoito Recheado;NESTLÉ;0.15;0.165;406;36;UN
+1006;Iogurte Natural;BATAVO;1.0;1.1;642;12;UN
+1007;Leite Longa Vida;NESTLÉ;1.0;1.1;406;12;UN
+1008;Margarina;BATAVO;0.5;0.55;642;20;UN
+1009;Requeijão Cremoso;BATAVO;0.2;0.22;642;24;UN
+1010;Mussarela Fatiada;DANONE;0.3;0.33;642;15;UN
+1011;Presunto Cozido;NESTLÉ;0.3;0.33;406;15;UN
+1012;Suco de Laranja;NUMBERONE;1.5;1.65;406;6;UN
+1013;Refrigerante Cola;NUMBERONE;2.0;2.2;406;6;UN
+1014;Água Mineral;NUMBERONE;1.5;1.65;406;12;UN
+1015;Arroz Tipo 1;PANINIS;5.0;5.5;450;5;UN
+1016;Feijão Carioca;PANINIS;1.0;1.1;450;10;UN
+1017;Açúcar Refinado;PANINIS;5.0;5.5;450;5;UN
+1018;Óleo de Soja;PAÇOCA;0.9;0.99;457;15;UN
+1019;Molho de Tomate;PAÇOCA;0.34;0.374;457;24;UN
+1020;Maionese;PAÇOCA;0.5;0.55;457;20;UN
+1021;Creme de Leite;IOG;0.2;0.22;540;24;UN
+1022;Leite Condensado;IOG;0.395;0.435;540;24;UN
+1023;Doce de Leite;IOG;0.4;0.44;540;12;UN
+1024;Queijo Minas;IOG;0.5;0.55;540;10;UN
+1025;Manteiga;QUEIJINHOS;0.2;0.22;642;30;UN
+1026;Iogurte Grego;QUEIJINHOS;0.15;0.165;642;24;UN
+1027;Bebida Láctea;QUEIJINHOS;1.0;1.1;642;12;UN
+1028;Pão de Queijo;BRINQUEDOS;0.3;0.33;449;20;UN
+1029;Salgadinho de Queijo;BRINQUEDOS;0.1;0.11;449;40;UN
+1030;Biscoito Cream Cracker;QUEIJO;0.2;0.22;396;30;UN
