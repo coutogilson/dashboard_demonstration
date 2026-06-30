@@ -591,6 +591,7 @@ def check_authentication():
     return True
 
 
+# Funcionalidade de troca de senha removida no modo demonstração
 def trocar_senha(username: str, senha_atual: str, nova_senha: str) -> tuple:
     """
     Troca a senha do usuário.
@@ -603,37 +604,7 @@ def trocar_senha(username: str, senha_atual: str, nova_senha: str) -> tuple:
     Returns:
         tuple: (sucesso: bool, mensagem: str)
     """
-    if not username or not senha_atual or not nova_senha:
-        return False, "❌ Preencha todos os campos."
-    
-    if len(nova_senha) < 6:
-        return False, "❌ A nova senha deve ter no mínimo 6 caracteres."
-    
-    if senha_atual == nova_senha:
-        return False, "❌ A nova senha deve ser diferente da senha atual."
-    
-    dados = carregar_usuarios()
-    
-    username_lower = username.lower().strip()
-    usuario_encontrado = None
-    for key in dados["usuarios"].keys():
-        if key.lower() == username_lower:
-            usuario_encontrado = key
-            break
-    
-    if not usuario_encontrado:
-        return False, "❌ Usuário não encontrado."
-    
-    usuario_data = dados["usuarios"][usuario_encontrado]
-    
-    if usuario_data["senha_hash"] != hash_senha(senha_atual):
-        return False, "❌ Senha atual incorreta."
-    
-    dados["usuarios"][usuario_encontrado]["senha_hash"] = hash_senha(nova_senha)
-    salvar_usuarios(dados)
-    
-    logger.info(f"✅ Senha alterada com sucesso para o usuário: {usuario_encontrado}")
-    return True, "✅ Senha alterada com sucesso!"
+    return False, "🔒 Funcionalidade desativada no modo demonstração"
 
 
 def logout():
@@ -683,7 +654,7 @@ def gerenciar_usuarios_page():
         except:
             pass
     
-    tab1, tab2, tab3 = st.tabs(["📋 Lista de Usuários", "➕ Novo Usuário", "📊 Vendedores sem Usuário"])
+    tab1, tab2 = st.tabs(["📋 Lista de Usuários", "📊 Vendedores sem Usuário"])
     
     with tab1:
         dados = carregar_usuarios()
@@ -742,86 +713,18 @@ def gerenciar_usuarios_page():
                 col_btn1, col_btn2, col_btn3 = st.columns(3)
                 
                 with col_btn1:
-                    if st.button("💾 Salvar Alterações", type="primary", key="btn_salvar_edicao"):
-                        dados["usuarios"][usuario_selecionado]["nome"] = novo_nome
-                        dados["usuarios"][usuario_selecionado]["perfil"] = novo_perfil
-                        dados["usuarios"][usuario_selecionado]["ativo"] = novo_ativo
-                        
-                        # Removida a funcionalidade de alteração de senha no modo demonstração
-                        salvar_usuarios(dados)
-                        st.success("✅ Usuário atualizado com sucesso!")
-                        st.rerun()
+                    st.button("💾 Salvar Alterações", key="btn_salvar_edicao", disabled=True, help="Funcionalidade desativada no modo demonstração")
                 
                 with col_btn2:
                     # Botão de resetar senha desativado no modo demonstração
                     st.button("🔄 Resetar Senha", key="btn_resetar_senha", disabled=True, help="Funcionalidade desativada no modo demonstração")
                 
                 with col_btn3:
-                    if usuario_selecionado.lower() != "admin":
-                        if st.button("🗑️ Excluir Usuário", type="secondary", key="btn_excluir_usuario"):
-                            del dados["usuarios"][usuario_selecionado]
-                            salvar_usuarios(dados)
-                            st.success(f"✅ Usuário {usuario_selecionado} excluído!")
-                            st.rerun()
+                    st.button("🗑️ Excluir Usuário", key="btn_excluir_usuario", disabled=True, help="Funcionalidade desativada no modo demonstração")
         else:
             st.info("Nenhum usuário cadastrado")
     
     with tab2:
-        st.subheader("Criar Novo Usuário")
-        
-        col1, col2 = st.columns(2)
-        with col1:
-            username = st.text_input("Usuário (login)", key="new_username")
-            nome = st.text_input("Nome completo", key="new_nome")
-            senha = st.text_input("Senha", type="password", key="new_senha")
-        
-        with col2:
-            perfil = st.selectbox(
-                "Perfil", 
-                list(PERFIS.keys()),
-                format_func=lambda x: PERFIS[x]["nome"],
-                key="new_perfil"
-            )
-            ativo = st.checkbox("Ativo", value=True, key="new_ativo")
-            
-            codvendedor = None
-            if perfil in ["vendedor", "supervisor"] and df_vendedores is not None:
-                vendedores_opcoes = df_vendedores[['codvendedor', 'vendedor']].drop_duplicates()
-                vendedores_opcoes['display'] = vendedores_opcoes['codvendedor'].astype(str) + ' - ' + vendedores_opcoes['vendedor']
-                
-                vendedor_selecionado = st.selectbox(
-                    "Associar a Vendedor",
-                    options=['Nenhum'] + vendedores_opcoes['display'].tolist(),
-                    key="new_vendedor"
-                )
-                if vendedor_selecionado != 'Nenhum':
-                    codvendedor = int(vendedor_selecionado.split(' - ')[0])
-        
-        if st.button("💾 Salvar Usuário", type="primary", key="btn_salvar_novo"):
-            if username and nome and senha:
-                dados = carregar_usuarios()
-                
-                username_existe = any(k.lower() == username.lower() for k in dados["usuarios"].keys())
-                
-                if username_existe:
-                    st.error("❌ Usuário já existe")
-                else:
-                    dados["usuarios"][username] = {
-                        "nome": nome,
-                        "perfil": perfil,
-                        "senha_hash": hash_senha(senha),
-                        "ativo": ativo,
-                        "data_criacao": datetime.now().isoformat(),
-                        "codvendedor": codvendedor,
-                        "filtros": {}
-                    }
-                    salvar_usuarios(dados)
-                    st.success(f"✅ Usuário {username} criado com sucesso!")
-                    st.rerun()
-            else:
-                st.error("❌ Preencha todos os campos obrigatórios")
-    
-    with tab3:
         st.subheader("Vendedores sem Usuário")
         
         if df_vendedores is not None:

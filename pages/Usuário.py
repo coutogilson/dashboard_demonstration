@@ -35,6 +35,9 @@ if not verificar_permissao("gerenciar_usuarios"):
 
 st.title("👥 Gerenciamento de Usuários")
 
+st.info("🔒 Funcionalidade de gerenciamento de usuários desativada no modo demonstração")
+st.write("Esta funcionalidade foi desativada para manter a integridade do ambiente de demonstração.")
+
 # Carregar vendedores para associação
 VENDEDORES_PARQUET = Path("processados/vendedores.parquet")
 df_vendedores = None
