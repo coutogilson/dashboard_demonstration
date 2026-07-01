@@ -44,6 +44,7 @@ codvendedor_info = f" — Código: {usuario.get('codvendedor')}" if usuario.get(
 st.markdown(f"""
 ### Bem-vindo(a) **{usuario.get('nome', 'Usuário')}** — Perfil: {PERFIS.get(usuario.get('perfil'), {}).get('nome', 'N/A')}{codvendedor_info}
 """)
+st.markdown("Página  inicial do sistema da demonstração de acompanhamento de metas. Os dados apresentados são fictícios e servem apenas para fins de demonstração.")
 
 # Menu de navegação dinâmico baseado nas permissões do usuário
 st.markdown("---")

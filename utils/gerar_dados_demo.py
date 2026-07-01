@@ -200,16 +200,16 @@ def gerar_produtos():
     return df
 
 def gerar_meta():
-    """Gera CSV de meta (últimos 12 meses + próximos 2)"""
+    """Gera CSV de meta (últimos 12 meses + próximos 3)"""
     dados = []
     hoje = datetime.now()
-    for mes_offset in range(-12, 3):  # 12 meses atrás até 2 meses à frente
+    for mes_offset in range(-12, 3):  # 12 meses atrás até 3 meses à frente
         data_base = hoje.replace(day=1) + timedelta(days=32 * mes_offset)
         data_base = data_base.replace(day=1)
         
         for cod_vendedor in range(1, len(NOMES_VENDEDORES) + 1):
             for cod_forn, nome_forn in NOMES_FORNECEDORES:
-                meta_valor = random.uniform(50000, 300000)
+                meta_valor = random.uniform(2000, 20000)
                 meta_pos = random.randint(10, 50)
                 dados.append({
                     'data': data_base.strftime('%Y-%m-%d'),
@@ -236,7 +236,7 @@ def gerar_faturamento():
         mes = data_base.month
         ano = data_base.year
         
-        num_notas = random.randint(300, 600)
+        num_notas = random.randint(300, 3000)
         for _ in range(num_notas):
             cod_vendedor = random.randint(1, len(NOMES_VENDEDORES))
             cod_cliente = random.randint(1, len(NOMES_CLIENTES))
@@ -246,8 +246,8 @@ def gerar_faturamento():
             
             dia = random.randint(1, 28)
             data = datetime(ano, mes, dia)
-            qtde = random.randint(1, 50)
-            preco_unit = random.uniform(5, 50)
+            qtde = random.randint(10, 200)
+            preco_unit = random.uniform(5, 100)
             valor_total = round(qtde * preco_unit, 2)
             peso_total = round(qtde * peso, 3)
             

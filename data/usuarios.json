@@ -5,7 +5,7 @@
             "perfil": "admin",
             "senha_hash": "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918",
             "ativo": true,
-            "data_criacao": "2026-06-30T11:06:27.808152",
+            "data_criacao": "2026-07-01T07:01:41.251291",
             "filtros": {}
         },
         "demo": {
@@ -13,7 +13,7 @@
             "perfil": "admin",
             "senha_hash": "2a97516c354b68848cdbd8f54a226a0a55b21ed138e207ad6c5cbb9c00aa5aea",
             "ativo": true,
-            "data_criacao": "2026-06-30T12:07:40.953434",
+            "data_criacao": "2026-07-01T07:01:41.251792",
             "filtros": {}
         }
     }
