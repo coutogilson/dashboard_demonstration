@@ -12,6 +12,13 @@ import random
 from pathlib import Path
 from datetime import datetime, timedelta
 
+def _add_months(data_base, meses):
+    """Retorna o primeiro dia do mês após somar/subtrair meses."""
+    mes = data_base.month - 1 + meses
+    ano = data_base.year + mes // 12
+    mes = mes % 12 + 1
+    return data_base.replace(year=ano, month=mes, day=1)
+
 # Forçar UTF-8 no stdout para evitar erro de encoding no Windows
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
@@ -204,8 +211,7 @@ def gerar_meta():
     dados = []
     hoje = datetime.now()
     for mes_offset in range(-12, 3):  # 12 meses atrás até 3 meses à frente
-        data_base = hoje.replace(day=1) + timedelta(days=32 * mes_offset)
-        data_base = data_base.replace(day=1)
+        data_base = _add_months(hoje.replace(day=1), mes_offset)
         
         for cod_vendedor in range(1, len(NOMES_VENDEDORES) + 1):
             for cod_forn, nome_forn in NOMES_FORNECEDORES:
@@ -232,7 +238,7 @@ def gerar_faturamento():
     
     # Gerar ~500 notas fiscais por mês
     for mes_offset in range(-12, 1):
-        data_base = hoje.replace(day=1) + timedelta(days=32 * mes_offset)
+        data_base = _add_months(hoje.replace(day=1), mes_offset)
         mes = data_base.month
         ano = data_base.year
         
@@ -323,7 +329,7 @@ def gerar_cortes():
     dados = []
     hoje = datetime.now()
     for mes_offset in range(-3, 0):
-        data_base = hoje.replace(day=1) + timedelta(days=32 * mes_offset)
+        data_base = _add_months(hoje.replace(day=1), mes_offset)
         mes = data_base.month
         ano = data_base.year
         
@@ -347,7 +353,7 @@ def gerar_pedidos():
     dados = []
     hoje = datetime.now()
     for mes_offset in range(-2, 1):
-        data_base = hoje.replace(day=1) + timedelta(days=32 * mes_offset)
+        data_base = _add_months(hoje.replace(day=1), mes_offset)
         mes = data_base.month
         ano = data_base.year
         
