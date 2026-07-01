@@ -247,7 +247,7 @@ def gerar_faturamento():
             dia = random.randint(1, 28)
             data = datetime(ano, mes, dia)
             qtde = random.randint(10, 200)
-            preco_unit = random.uniform(5, 100)
+            preco_unit = random.uniform(5, 80)
             valor_total = round(qtde * preco_unit, 2)
             peso_total = round(qtde * peso, 3)
             
